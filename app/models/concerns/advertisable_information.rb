@@ -4,7 +4,7 @@ module Concerns::AdvertisableInformation
   included do
     def get_advertise code
       return Spree::Advertisment.None if code.nil?
-      return spree_advertisment.where(code: code)
+      return spree_advertisment.where(code: code, active: true)
     end
   end
 end
