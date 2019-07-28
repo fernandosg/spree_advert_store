@@ -11,5 +11,17 @@ FactoryBot.define do
     trait :by_taxon do
       advrt_rf { |a| a.association(:taxon)}
     end
+
+    trait :type_image do
+      type_advertisement "image"
+    end
+
+    trait :type_video do
+      type_advertisement "image"
+    end
+
+    trait :type_video do
+      type_advertisement "image"
+    end
   end
 end
