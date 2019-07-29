@@ -15,6 +15,6 @@ class Spree::Advertisment < ApplicationRecord
   def method_missing(m, *args, &block)
     return super(m, *args, &block) unless method_helper_is_knowledge(m.to_s)
     type = m.to_s.split("_")[-1]
-    return TYPES_ADVERTISMENT.include?(type)
+    return type_advertisement == type.split("?")[0]
   end
 end
