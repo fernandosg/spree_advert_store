@@ -17,11 +17,11 @@ FactoryBot.define do
     end
 
     trait :type_video do
-      type_advertisement "image"
+      type_advertisement "video"
     end
 
-    trait :type_video do
-      type_advertisement "image"
+    trait :type_text do
+      type_advertisement "text"
     end
   end
 end
