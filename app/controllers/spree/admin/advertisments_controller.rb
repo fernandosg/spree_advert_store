@@ -1,4 +1,4 @@
-class Spree::Admin::AdvertismentController < Spree::Admin::ResourceController
+class Spree::Admin::AdvertismentsController < Spree::Admin::ResourceController
   before_action :collection, only: :index
   before_action :define_new_object, only: :new
   before_action :define_edit_object, only: :edit

@@ -1,0 +1,29 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:advertisment) %>
+<% end %>
+
+<table class="table" id="listing_advertisment">
+  <thead>
+    <tr>
+      <th><%= Spree.t(:id) %></th>
+      <th><%= Spree.t(:code) %></th>
+      <th><%= Spree.t(:type) %></th>
+      <th><%= Spree.t(:view_content) %></th>
+      <th data-hook="admin_advertisment_index_header_actions" class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @collection.each do |advertisment| %>
+      <tr data-hook="admin_advertisment_index_rows" id="<%= dom_id advertisment %>" class="<%= cycle('odd', 'even') %>">
+        <td><%= advertisment.id %></td>
+        <td><%= advertisment.code %></td>
+        <td><%= advertisment.type_advertisement %></td>
+        <td><span>Ver contenido</span></td>
+        <td data-hook="admin_advertisment_index_row_actions" class="actions">
+          <%= link_to_edit advertisment, no_text: true, class: 'edit' %>
+          <%= link_to_delete advertisment, no_text: true %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

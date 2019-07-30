@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    RSpec.describe AdvertismentController, type: :controller do
+    RSpec.describe AdvertismentsController, type: :controller do
       let(:user) { create(:user) }
       let(:product) { create(:product) }
       let(:taxon) { create(:taxon) }
