@@ -32,11 +32,7 @@ class Spree::Admin::AdvertismentsController < Spree::Admin::ResourceController
     @advertisment = Spree::Advertisment.find(params[:id])
   end
 
-  def checking
-    binding.pry
-  end
-
   def collection_url
-    admin_advertisment_index_url
+    admin_advertisments_url
   end
 end
