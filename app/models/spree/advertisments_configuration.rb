@@ -1,17 +1,19 @@
 class Spree::AdvertismentsConfiguration < ApplicationRecord
-    def enable
-        self.preferences['enable'] = true
+    include Concerns::ConfigurationGem
+    
+    def self.enable
+        get_configuration.set_opt("enable", true).save
     end
 
-    def disable
-        self.preferences['enable'] = false
+    def self.disable
+        get_configuration.set_opt("enable", false).save
     end
 
-    def is_enable?
-        self.preferences['enable'] == true
+    def self.is_enable?
+        get_configuration.is_enable_like_true?
     end
 
-    def is_disable?        
-        self.preferences['enable'] == false
+    def self.is_disable?
+        get_configuration.is_enable_like_false?
     end
 end
