@@ -4,13 +4,13 @@ module Spree
         let(:user) { create(:user) }
         let(:product) { create(:product) }
         let(:advertisment_configurations_params_enable) do
-          { advertisments_configurations: { preferences: 
-          {enable: true}}, action: "Update"}
+          { advertisments_configuration: { preferences: 
+          "{enable: true}"}, action: "Update"}
         end
 
         let(:advertisment_configurations_params_disable) do
-            { advertisments_configurations: { preferences: 
-            {enable: false}}, action: "Update"}
+            { advertisments_configuration: { preferences: 
+            "{enable: false}"}, action: "Update"}
           end
   
         context '#configure' do
@@ -38,7 +38,7 @@ module Spree
 
           it 'Update the advertisment extension like disable' do            
             spree_post :configure, advertisment_configurations_params_disable
-            expect(Spree:AdvertismentsConfiguration.is_enable?).to be_truthy
+            expect(Spree::AdvertismentsConfiguration.is_enable?).to be_falsy
           end
   
           it 'flashes the notice' do

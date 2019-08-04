@@ -28,7 +28,7 @@ module Concerns::ConfigurationGem
             return super(name, *args, &block) if !name_attribute.include?("is_") || !name_attribute.include?("_like_")
             name_attribute = name_attribute.gsub("?", "").gsub("is_", "")
             data = name_attribute.split("_like_")
-            get_preferences_obj[data[0]] == data[1]
+            get_preferences_obj[data[0].to_sym] == (data[1].is_a?(String) ? eval(data[1]) : data[1])
         end
 
         def set_opt opt, value
@@ -40,6 +40,11 @@ module Concerns::ConfigurationGem
             unless @preferences_obj.nil?
                 self.preferences = @preferences_obj.to_s
             end
+        end
+
+        def get_preference(key)
+            return eval(get_preferences_obj[key].to_s) if get_preferences_obj.include?(key)
+            return nil
         end
 
         class << self

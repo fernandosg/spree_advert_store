@@ -3,7 +3,7 @@
   <%= Spree.t(:change_advertisment_configuration) %>
 <% end %>
 
-<%= form_for [:admin, @object], html: { multipart: true } do |f| %>
+<%= form_for [:admin, @object], url: admin_advertisments_configurations_update_path, html: { multipart: true } do |f| %>
   <fieldset data-hook="change_advertisment_configuration">
     <%= render partial: 'form', locals: { f: f } %>
 

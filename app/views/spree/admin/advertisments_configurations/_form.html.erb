@@ -2,7 +2,7 @@
   <div class="col-xs-12 col-md-6">
     <div data-hook="code" class="form-group">
       <%= f.label :enable, Spree.t(:enable) %>
-      <%= check_box_tag :enable %>
+      <%= f.check_box "preferences", {checked: (f.object.get_preference(:enable) ? "checked" : '') }, {enable: true}, {enable: false} %>
     </div>
   </div>
 </div>

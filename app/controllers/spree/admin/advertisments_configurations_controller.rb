@@ -1,7 +1,7 @@
 class Spree::Admin::AdvertismentsConfigurationsController < Spree::Admin::ResourceController
     
     def configure
-        unless params[:advertisments_configurations].nil?
+        unless params[:advertisments_configuration].nil?
             update_configuration
         else
             @object = Spree::AdvertismentsConfiguration.get_configuration
@@ -9,8 +9,12 @@ class Spree::Admin::AdvertismentsConfigurationsController < Spree::Admin::Resour
     end
 
     def update_configuration
-        if @model_class.set_preferences permitted_params[:preferences]
-            respond_to do |format|
+        preferences_param = permitted_params[:preferences]
+        if permitted_params[:preferences].is_a?(String)
+            preferences_param = eval(permitted_params[:preferences])
+        end
+        if @model_class.set_preferences preferences_param
+            return respond_to do |format|
                 flash[:notice] = Spree.t(:advertisment_configuration_sucessfuly_updated)
                 format.html {redirect_to admin_advertisments_configurations_url}
             end
@@ -28,7 +32,8 @@ class Spree::Admin::AdvertismentsConfigurationsController < Spree::Admin::Resour
     
     private
     def permitted_params
-       params.require("advertisments_configurations").permit(:preferences=> [:enable])
+       #params.require("advertisments_configuration").permit(:preferences=> [:enable])
+       params.require("advertisments_configuration").permit(:preferences)
     end
 
 end
