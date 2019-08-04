@@ -2,8 +2,8 @@ Spree::Core::Engine.add_routes do
   # Add your extension routes here
   namespace :admin do
     get "advertisment", to: "advertisments#index", as: :admin_advertisments
+    get "advertisments/configuration", to: "advertisments_configurations#configure", as: :advertisments_configurations
+    post "advertisments/configuration", to: "advertisments_configurations#configure", as: :advertisments_configurations_update
     resources :advertisments
-    get "advertisment/configuration", to: "advertisments_configuration#configure", as: :admin_advertisments_configuration
-    post "advertisment/configuration", to: "advertisments_configuration#configure", as: :admin_advertisments_configuration_update
   end
 end

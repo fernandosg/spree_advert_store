@@ -5,3 +5,5 @@ en:
   hello: "Hello world"
   spree:
     advertisment_successfully_created: 'Advertisment has been successfully created!'
+    advertisment_configuration_sucessfuly_updated: "Advertisment Configuration has been successfully updated"
+    advertisment_configuration_error_updated: "There is an error in the process of the updating configuration"

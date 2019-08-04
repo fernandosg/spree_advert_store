@@ -6,8 +6,8 @@ module Concerns::ConfigurationGem
         before_save :update_preferences
 
         def init_configuration
-            if self.preferences.nil?
-                self.preferences = "{}"
+            if self.preferences.blank?
+                self.preferences = "{'enable': true}"
             end
             @preferences_obj = eval(self.preferences)
             self
@@ -18,14 +18,17 @@ module Concerns::ConfigurationGem
             @preferences_obj
         end
 
+        def set_preferences_obj preferences
+            @preferences_obj = preferences
+            self
+        end
+
         def method_missing name, *args, &block
             name_attribute = name.to_s
             return super(name, *args, &block) if !name_attribute.include?("is_") || !name_attribute.include?("_like_")
             name_attribute = name_attribute.gsub("?", "").gsub("is_", "")
             data = name_attribute.split("_like_")
-            binding.pry
-            return super(name, *args, &block) unless get_preferences_obj.include?(data[0])
-            get_preferences_obj[data[0]] == eval(data[1])
+            get_preferences_obj[data[0]] == data[1]
         end
 
         def set_opt opt, value
@@ -34,7 +37,9 @@ module Concerns::ConfigurationGem
         end
 
         def update_preferences
-            self.preferences = @preferences_obj.to_s
+            unless @preferences_obj.nil?
+                self.preferences = @preferences_obj.to_s
+            end
         end
 
         class << self

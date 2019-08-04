@@ -16,4 +16,9 @@ class Spree::AdvertismentsConfiguration < ApplicationRecord
     def self.is_disable?
         get_configuration.is_enable_like_false?
     end
+
+    def self.set_preferences preferences
+        config = get_configuration.set_preferences_obj preferences
+        config.save
+    end
 end
